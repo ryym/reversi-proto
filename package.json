@@ -1,0 +1,7 @@
+{
+  "name": "reversi-proto",
+  "private": true,
+  "scripts": {
+    "start": "node cli.js"
+  }
+}
