@@ -34,9 +34,9 @@ ${pieces[Piece.WHITE]}: ${result[Piece.WHITE]}
 ${pieces[Piece.BLACK]}: ${result[Piece.BLACK]}`;
 };
 
-const play = reader => {
+const play = (reader, config) => {
   const state = {
-    play: new Play({ size: 4 }),
+    play: new Play({ size: config.boardSize }),
   };
   const prompt = 'put at:';
   const inputPattern = /^\s*(\d+)\s+(\d+)\s*$/;
@@ -85,4 +85,8 @@ const reader = readline.createInterface({
   output: process.stdout,
 });
 
-play(reader);
+const config = {
+  boardSize: process.env.REVERSI_SIZE || 4,
+};
+
+play(reader, config);
