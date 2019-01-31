@@ -9,8 +9,8 @@ class Play {
     this.game = new Reversi(new Board(size));
     this.player = Piece.BLACK;
     this.counts = {
-      [Piece.WHITE]: 0,
-      [Piece.BLACK]: 0,
+      [Piece.WHITE]: 2,
+      [Piece.BLACK]: 2,
     };
   }
 
@@ -28,8 +28,12 @@ class Play {
       return null;
     }
 
-    this.counts[this.player] += flipCount;
-    this.player = Piece.flip(this.player);
+    const opponent = Piece.flip(this.player);
+
+    this.counts[this.player] += flipCount + 1;
+    this.counts[opponent] -= flipCount;
+
+    this.player = opponent;
 
     return {
       [Piece.WHITE]: this.counts[Piece.WHITE],
